@@ -70,7 +70,7 @@
     }
 
     start = document.getElementById("start_date");
-    start.value = getDate(-20);
+    start.value = getDate(-19);
     end = document.getElementById("end_date");
     end.value = getDate(0);
     layui.use('laydate', function () {
@@ -89,7 +89,7 @@
     });
 
     // 包
-    selectsiteCode = document.getElementById("select_pkg_name");
+    selectsiteCode = document.getElementById("select_site_code");
     selectsiteCode.onchange = function () {
         selectsiteCode.selectedIndex = this.selectedIndex
         console.log(this.options[this.selectedIndex].innerHTML);
@@ -99,7 +99,7 @@
         siteCode = selectsiteCode.options[selectsiteCode.selectedIndex].text
         layui.table.render({
             elem: '#table'
-            , url: '/report/day/pkg/list'
+            , url: '/report/day/site/list'
             , where: {
                 "startDate": start.value
                 , "endDate": end.value
@@ -112,11 +112,11 @@
             }
             , limits: [20, 30, 40, 50, 100]
             , height: 768
-            , cellMinWidth: 120
+            , cellMinWidth: 108
             , cols: [
                 [
                     {field: 'dataDate', title: '日期', sort: true, fixed: 'left', width: 120}
-                    , {field: 'siteCode', title: '站点', sort: true, fixed: 'left', width: 160}
+                    , {field: 'siteCode', title: '站点', sort: true, fixed: 'left'}
                     , {field: 'generalAgentCount', title: '注册总代数', sort: true}
                     , {field: 'registerAgentCount', title: '注册代理数', sort: true}
                     , {field: 'registerUserCount', title: '注册用户数', sort: true}
@@ -132,7 +132,7 @@
                     , {field: 'gp15', title: 'gp15', sort: true}
                     , {field: 'gp2', title: 'gp2', sort: true}
                     , {field: 'gp2', title: 'gp2', sort: true}
-                    , {field: 'updateDate', title: '统计截至时间', sort: true}
+                    , {field: 'updateDate', title: '统计截至时间', sort: true, width: 180}
                 ]
             ]
         });

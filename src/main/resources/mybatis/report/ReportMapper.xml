@@ -25,6 +25,7 @@
         from doris_dt.app_day_site_kpi
         <where>
             <if test="siteCode != null and siteCode != ''">and site_code = #{siteCode}</if>
+            <if test="startDate != null and startDate != ''">and data_date between #{startDate} and #{endDate}</if>
         </where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
@@ -43,6 +44,7 @@
         select count(1) from doris_dt.app_day_site_kpi
         <where>
             <if test="siteCode != null and siteCode != ''">and site_code = #{siteCode}</if>
+            <if test="startDate != null and startDate != ''">and data_date between #{startDate} and #{endDate}</if>
         </where>
     </select>
 
