@@ -12,14 +12,14 @@ spring:
   datasource:
     mysql:
       driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://10.6.70.110:3306/dt_db?useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://192.168.101.22:3306/dt_db?useUnicode=true&characterEncoding=utf8
       username: root
-      password: f6~R8w3t_K>NjzRg6t
+      password: MyNewPass4!
     dorisdb:
       driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://10.6.70.130:19030/doris_dt
+      url: jdbc:mysql://192.168.101.23:19030/doris_dt
       username: root
-      password: Doris@KWe22PeVj74vD
+      password: root
   redis:
     host: localhost
     port: 6379
