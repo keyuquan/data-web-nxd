@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.nxd.report.dao.ReportDao">
+
+    <select id="listDayPkg" resultType="com.web.nxd.report.domain.AppDaySiteKpiDo">
+        select
+        data_date dataDate
+        ,site_code siteCode
+        ,general_agent_count generalAgentCount
+        ,register_agent_count registerAgentCount
+        ,register_user_count registerUserCount
+        ,login_user_count loginUserCount
+        ,deposit_amount depositAmount
+        ,withdraw_amount withdrawAmount
+        ,turnover_amount turnoverAmount
+        ,prize_amount prizeAmount
+        ,agent_share_amount agentShareAmount
+        ,lottery_rebates_amount lotteryRebatesAmount
+        ,gp1
+        ,revenue
+        ,gp1_5 gp15
+        ,gp2
+        ,update_date updateDate
+        from doris_dt.app_day_site_kpi
+        <where>
+            <if test="siteCode != null and siteCode != ''">and site_code = #{siteCode}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by data_date desc, site_code desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="listDayPkgCount" resultType="int">
+        select count(1) from doris_dt.app_day_site_kpi
+        <where>
+            <if test="siteCode != null and siteCode != ''">and site_code = #{siteCode}</if>
+        </where>
+    </select>
+
+
+</mapper>
